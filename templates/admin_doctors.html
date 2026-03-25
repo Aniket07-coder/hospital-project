@@ -1,0 +1,40 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-3">
+    <h3>👨‍⚕️ Doctors</h3>
+    <a href="/add-doctor/" class="btn btn-primary">Add Doctor</a>
+</div>
+
+<div class="table-responsive">
+<table class="table table-bordered text-center">
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Specialization</th>
+        <th>Action</th>
+    </tr>
+
+    {% for doctor in doctors %}
+    <tr>
+        <td>
+            {% if doctor.image %}
+                <img src="{{ doctor.image.url }}" width="70" height="70" style="border-radius:50%; object-fit: cover; border: 2px solid black;">
+            {% else %}
+                No Image
+            {% endif %}
+        </td>
+        <td>{{ doctor.name }}</td>
+        <td>{{ doctor.specialization }}</td>
+
+        <td>
+            <a href="/edit-doctor/{{ doctor.id }}/" class="btn btn-warning btn-sm">Edit</a>
+            <a href="/delete-doctor/{{ doctor.id }}/" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+{% endblock %}

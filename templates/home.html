@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+            url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3');
+            background-size: cover;
+            color: white;
+            padding: 130px 0;
+            text-align: center;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ✅ Navbar -->
+{% include 'navbar.html' %}
+
+<!-- 🔷 HERO -->
+<section class="hero">
+    <h1>Welcome to Our Hospital</h1>
+    <p>Best Healthcare Services for You</p>
+
+    <a href="/appointment/" class="btn btn-success m-2">Book Appointment</a>
+    <a href="/doctors/" class="btn btn-primary m-2">Our Doctors</a>
+</section>
+
+<!-- 🔷 SERVICES -->
+<section class="container mt-5 text-center">
+    <h2 class="mb-4">Our Services</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card p-4 shadow feature-box">
+                <h4>👨‍⚕️ Expert Doctors</h4>
+                <p>Experienced professionals</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 shadow feature-box">
+                <h4>🏥 Modern Equipment</h4>
+                <p>Latest technology</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 shadow feature-box">
+                <h4>📅 Easy Booking</h4>
+                <p>Quick appointments</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ✅ Footer -->
+{% include 'footer.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

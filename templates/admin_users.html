@@ -1,0 +1,44 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+<h3 class="mb-3">👤 Users</h3>
+
+<div class="table-responsive">
+<table class="table table-bordered text-center">
+    <tr>
+        <th>Image</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+
+    {% for u in users %}
+    <tr>
+    
+        <td>
+            {% if u.profile.image %}
+                <img src="{{ u.profile.image.url }}" width="50" height="50"
+                     style="border-radius:50%; object-fit:cover;">
+            {% else %}
+                No Image
+            {% endif %}
+        </td>
+    
+        <td>{{ u.username }}</td>
+        <td>{{ u.email }}</td>
+    
+        <td>
+            {% if u.is_superuser %}
+                <span class="badge bg-success">Admin</span>
+            {% else %}
+                <span class="badge bg-secondary">User</span>
+            {% endif %}
+        </td>
+    
+    </tr>
+{% endfor %}
+</table>
+</div>
+
+{% endblock %}

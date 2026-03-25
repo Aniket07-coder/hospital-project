@@ -1,0 +1,81 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+<h3 class="mb-4">📊 Dashboard</h3>
+
+<div class="row text-center">
+
+    <div class="col-md-4">
+        <div class="card shadow p-4">
+            <h3>{{ appointments.count }}</h3>
+            <p>Total Appointments</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow p-4">
+            <h3>{{ doctors.count }}</h3>
+            <p>Total Doctors</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow p-4">
+            <h3>{{ users.count }}</h3>
+            <p>Total Users</p>
+        </div>
+    </div>
+
+    <style>
+        .chart-box {
+            width: 300px;
+            margin: auto;
+        }
+    </style>
+
+    <div class="card p-4 mt-4">
+    <h4>📊 Appointment Status (Graph)</h4>
+    <div class="chart-box">
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'pie',   // 🔥 changed to graph style
+        data: {
+            labels: ['Pending', 'Accepted', 'Rejected'],
+            datasets: [{
+                data: [
+                    {{ pending|default:0 }},
+                    {{ accepted|default:0 }},
+                    {{ rejected|default:0 }}
+                ],
+                backgroundColor: [
+                    '#ffc107',  // 🟡 Pending (yellow)
+                    '#198754',  // 🟢 Accepted (green)
+                    '#dc3545'   // 🔴 Rejected (red)
+                ],
+                borderColor: '#fff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+});
+</script>
+
+</div>
+
+{% endblock %}

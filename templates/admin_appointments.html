@@ -1,0 +1,45 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+<h3 class="mb-4">📅 Appointments</h3>
+
+<div class="table-responsive">
+<table class="table table-bordered text-center">
+    <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for appt in appointments %}
+    <tr>
+        <td>{{ appt.patient_name }}</td>
+        <td>{{ appt.doctor.name }}</td>
+
+        <td>
+            {% if appt.status == "Accepted" %}
+                <span class="badge bg-success">Accepted</span>
+            {% elif appt.status == "Rejected" %}
+                <span class="badge bg-danger">Rejected</span>
+            {% else %}
+                <span class="badge bg-warning">Pending</span>
+            {% endif %}
+        </td>
+
+        <td>
+            {% if appt.status == "Pending" %}
+                <a href="/accept-appointment/{{ appt.id }}/" class="btn btn-success btn-sm">Accept</a>
+                <a href="/reject-appointment/{{ appt.id }}/" class="btn btn-danger btn-sm">Reject</a>
+            {% else %}
+                Done
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+
+{% endblock %}
